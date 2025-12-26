@@ -1,4 +1,4 @@
-name: workflow A
+name: workflow B
 
 on:
   pull_request:
