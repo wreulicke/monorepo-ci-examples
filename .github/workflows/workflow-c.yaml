@@ -1,0 +1,24 @@
+name: workflow C
+
+on:
+  pull_request:
+    paths:
+      - 'some/**'
+jobs:
+  prepare:
+    name: Prepare
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.set-output.outputs.changed }}
+    steps:
+      - run: echo "Preparing..."
+      - name: Set output
+        id: set-output
+        run: echo "changed=false" > $GITHUB_OUTPUT
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    needs: prepare
+    if: ${{ needs.prepare.outputs.changed == 'true' }}
+    steps:
+      - run: echo "This is workflow A"
