@@ -1,0 +1,12 @@
+name: workflow A
+
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This is workflow A"
